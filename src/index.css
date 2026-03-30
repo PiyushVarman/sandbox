@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+:root {
+  @apply bg-linear-45 from-[#ffd700] to-[white];
+  line-height: 1.25;
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+}
+
+#root {
+  max-width: 100%;
+  margin: 10px auto ;
+  text-align: center;
+  min-height: 100svh;
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+}
