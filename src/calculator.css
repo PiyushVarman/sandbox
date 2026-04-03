@@ -1,0 +1,18 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource-variable/geist";
+
+.checker{
+    width:20vw !important;
+    height:58.5% !important;
+    @apply bg-black/90;
+    box-shadow: 2px 2px 5px;
+}
+
+.calcops{
+    @apply !bg-gray-400;
+    @apply !text-black;
+    @apply rounded-4xl;
+    @apply my-1;
+}

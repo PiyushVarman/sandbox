@@ -1,21 +1,79 @@
 import { useState } from 'react'
 import './App.css'
-import Check from './check.jsx';
+import Calculator from './calculator.jsx';
+import Notepad from './notepad.jsx';
+import { AnimatePresence,motion } from 'motion/react';
+
+import {
+  Menubar,
+  MenubarContent,
+  MenubarGroup,
+  MenubarItem,
+  MenubarMenu,
+  MenubarSeparator,
+  MenubarShortcut,
+  MenubarTrigger,
+} from "@/components/ui/menubar"
+
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+
 function App() {
-  const [activate, setActivate] = useState(false)
+  const [dockShow, setDockShow] =useState(true);
+  const [calcOpen, setCalcOpen] = useState(false);
+  const [notepadOpen, setNotepadOpen] = useState(false);
 
   return (
     <>
-    <div style={{textAlign:"right"}}>
-    ░█████╗░░█████╗░██╗░░░░░░█████╗░░█████╗░░██████╗<br/>
-    ██╔══██╗██╔══██╗██║░░░░░██╔══██╗██╔══██╗██╔════╝<br/>
-    ███████║███████║██║░░░░░██║░░██║██║░░██║╚█████╗░<br/>
-    ██╔══██║██╔══██║██║░░░░░██║░░██║██║░░██║░╚═══██╗<br/>
-    ██║░░██║██║░░██║███████╗╚█████╔╝╚█████╔╝██████╔╝<br/>
-    ╚═╝░░╚═╝╚═╝░░╚═╝╚══════╝░╚════╝░░╚════╝░╚═════╝░<br/>
+    <Menubar className="z-50 rounded-none bg-black/50 backdrop-blur text-white border-none">
+    <MenubarMenu className="bg-black/50">
+      <MenubarTrigger>🥔</MenubarTrigger>
+      <MenubarContent className="mx-1 backdrop-blur-xl bg-black/50 text-white">
+        <MenubarGroup>
+          <MenubarItem onClick={()=>(dockShow==true)?setDockShow(false):setDockShow(true)}>{(dockShow==true)?"Hide Dock":"Show Dock"}</MenubarItem>
+        </MenubarGroup>
+      </MenubarContent>
+    </MenubarMenu>
+    <MenubarMenu>
+      <MenubarTrigger>Applications</MenubarTrigger>
+      <MenubarContent className="mx-1 backdrop-blur-xl bg-black/50 text-white ">
+        <MenubarGroup >
+          <MenubarItem  onClick={() => setCalcOpen(true)}>
+            Calculator
+          </MenubarItem>
+          <MenubarItem onClick={() => setNotepadOpen(true)}>
+            NotePad
+          </MenubarItem>
+        </MenubarGroup>
+        <MenubarSeparator />
+        <MenubarGroup>
+          <MenubarItem>Share</MenubarItem>
+          <MenubarItem>Print</MenubarItem>
+        </MenubarGroup>
+      </MenubarContent>
+    </MenubarMenu>
+  </Menubar>
+  {/* hover:scale-110 hover:mr-20 hover:drop-shadow-xs hover:drop-shadow-amber-300 duration-100 cursor-none */}
+    <div style={{textAlign:"right", marginTop:"10px", fontSize:"10px"}} className=""> 
+      <span className="select-none bg-linear-to-r from-black to-[#ffd700]/90 text-transparent bg-clip-text ">
+      ░█████╗░░█████╗░██╗░░░░░░█████╗░░█████╗░░██████╗<br/>
+      ██╔══██╗██╔══██╗██║░░░░░██╔══██╗██╔══██╗██╔════╝<br/>
+      ███████║███████║██║░░░░░██║░░██║██║░░██║╚█████╗░<br/>
+      ██╔══██║██╔══██║██║░░░░░██║░░██║██║░░██║░╚═══██╗<br/>
+      ██║░░██║██║░░██║███████╗╚█████╔╝╚█████╔╝██████╔╝<br/>
+      ╚═╝░░╚═╝╚═╝░░╚═╝╚══════╝░╚════╝░░╚════╝░╚═════╝░<br/>
+    </span>
     </div>
-    <button onClick={() => setActivate(true)} className='rounded border w-10'>hello</button>
-    {activate && <Check/>}
+    <AnimatePresence>
+      {calcOpen && <Calculator setActivate={ setCalcOpen }/>}
+      {notepadOpen && <Notepad setActivate={ setNotepadOpen }/>}
+      
+    </AnimatePresence>
+    <AnimatePresence>
+    {dockShow && <motion.div initial={{opacity:0.5, scale:0.9}} animate={{opacity: 1, scale:1}} exit={{scale:0.25, opacity:0}} transition={{duration: 0.1}} className='flex flex-row items-center justify-center gap-x-5  absolute bottom-4 left-[35%] w-[30vw] h-[75px] rounded-2xl shadow-xs *:hover:shadow-md *:hover:shadow-black shadow-black bg-black/50 hover:bg-black/60 duration-200 backdrop-blur-sm select-none *:flex *:items-center *:justify-center *:hover:scale-110 *:rounded-xl *:w-13 *:h-13 *:active:shadow-none *:active:scale-100'>
+        <motion.div initial={{opacity:0.5, scale:0.8}} animate={{opacity: 1, scale:1}} className='outline text-s align-middle bg-white duration-200 p-0 cursor-pointer' onClick={() => (calcOpen == false ? setCalcOpen(true) : setCalcOpen(false))}>➕➖<br/>✖️➗</motion.div>
+        <motion.div initial={{opacity:0.5, scale:0.8}} animate={{opacity: 1, scale:1}} className='text-3xl align-middle bg-blue-300 duration-200 p-0 cursor-pointer' onClick={() => (notepadOpen == false ? setNotepadOpen(true) : setNotepadOpen(false))}>🗒️</motion.div>
+    </motion.div> }
+    </AnimatePresence>
     </>
   )
 }
