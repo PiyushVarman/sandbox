@@ -30,12 +30,12 @@ function result()
 function Calculator({ setActivate })
 {
     return(
-        <motion.div drag initial={{ scale: 0.75 }} exit={{ scale: 0.25, opacity:0}} animate={{ scale: 1 }}  whileDrag={{boxShadow: "5px 5px 10px"}} dragMomentum={false} className="flex flex-col items-center border [&,>*]:rounded-xl checker z-0">
-            <div className="flex items-center justify-between  w-[95%] font-bold font-['Inconsolata'] h-[5vh] xl:h-9 bg-gray-500 text-white m-2 p-1 md:py-5 xl:py-2 xl:p-2">
+        <motion.div drag initial={{ scale: 0.75 }} exit={{ scale: 0.25, opacity:0}} animate={{ scale: 1 }}  whileDrag={{boxShadow: "5px 5px 10px"}} dragMomentum={false} className="flex flex-col items-center border [&,>*]:rounded-xl checker">
+            <div className="flex items-center justify-between w-[95%] font-bold font-['Inconsolata']  xl:h-9 bg-gray-500 text-white m-2 p-1 md:py-2 xl:p-2">
                 <div className='text-center'>Calculator</div>
                 <button onClick={()=>setActivate(false)} className="float-right mr-2 hover:text-red-600 duration-200">⛌</button>
             </div>
-            <div className="grid grid-cols-4 m-2 gap-1 *:rounded *:p-3 *:bg-gray-500 *:text-white *:font-bold *:xl:font-normal *md:text-xs *:xl:text-2xl *:hover:shadow *:shadow-gray-500 *:active:shadow-none *:duration-250">
+            <div className="grid grid-cols-4 m-2 gap-1 *:rounded *:p-3 *:bg-gray-500 *:text-white *:font-bold *:xl:font-normal *md:text-xs *:lg:text-xl *:xl:text-2xl *:hover:shadow *:shadow-gray-500 *:active:shadow-none *:duration-250">
                 <input className="col-span-4  bg-white! text-black! focus:border-amber-500! focus:outline-none!" id="display"></input>
                 <div onClick={() => inputDisplay("+")} className="calcops">+</div>
                 <div onClick={() => inputDisplay("-")} className="calcops">-</div>

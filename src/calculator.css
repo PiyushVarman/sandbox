@@ -8,6 +8,8 @@
     @apply h-[42vh];
     @apply md:w-[25vw];
     @apply md:h-[92vh];
+    @apply lg:h-[17.5vh];
+    @apply lg:w-[25vw];
     @apply xl:w-[20vw];
     @apply xl:h-[58.5%];
     @apply bg-black/90;
