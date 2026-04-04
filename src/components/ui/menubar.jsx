@@ -11,7 +11,7 @@ function Menubar({
   return (
     <MenubarPrimitive.Root
       data-slot="menubar"
-      className={cn("flex h-8 items-center gap-0.5 rounded-lg border p-[3px]", className)}
+      className={cn(" bg-black/50 hover:bg-black/60 duration-200 z-1 flex h-8 items-center gap-0.5 rounded-lg border p-[3px]", className)}
       {...props} />
   );
 }
@@ -22,7 +22,7 @@ function MenubarMenu({
 }) {
   return <MenubarPrimitive.Menu
     data-slot="menubar-menu"
-    className={cn("overflow-hidden ", className)} {...props} />;
+    className={cn("overflow-hidden", className)} {...props} />;
 }
 
 function MenubarGroup({

@@ -4,8 +4,12 @@
 @import "@fontsource-variable/geist";
 
 .checker{
-    width:20vw !important;
-    height:58.5% !important;
+    @apply w-[55vw];
+    @apply h-[42vh];
+    @apply md:w-[25vw];
+    @apply md:h-[92vh];
+    @apply xl:w-[20vw];
+    @apply xl:h-[58.5%];
     @apply bg-black/90;
     box-shadow: 2px 2px 5px;
 }

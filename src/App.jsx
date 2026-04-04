@@ -24,7 +24,7 @@ function App() {
 
   return (
     <div>
-    <Menubar className="flex flex-row items-center justify-start  z-50 rounded-none bg-black/50 hover:bg-black/60 duration-200 backdrop-blur text-white border-none">
+    <Menubar className="flex flex-row items-center justify-start z-50 rounded-none backdrop-blur text-white border-none">
     <MenubarMenu>
       <MenubarTrigger>🥔</MenubarTrigger>
       <MenubarContent className="mx-1 backdrop-blur-xl bg-black/50 text-white">
