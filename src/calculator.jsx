@@ -30,7 +30,7 @@ function result()
 function Calculator({ setActivate })
 {
     return(
-        <motion.div drag initial={{ scale: 0.75 }} exit={{ scale: 0.25, opacity:0}} animate={{ scale: 1 }}  whileDrag={{boxShadow: "5px 5px 10px"}} dragMomentum={false} className="flex flex-col items-center border [&,>*]:rounded-xl checker">
+        <motion.div drag initial={{ scale: 0.75 }} exit={{ scale: 0.25, opacity:0}} animate={{ scale: 1 }}  whileDrag={{boxShadow: "5px 5px 10px"}} dragMomentum={false} className="flex flex-col items-center border [&,>*]:rounded-xl m-5 mt-10 checker">
             <div className="flex items-center justify-between w-[95%] font-bold font-['Inconsolata']  xl:h-9 bg-gray-500 text-white m-2 p-1 md:py-2 xl:p-2">
                 <div className='text-center'>Calculator</div>
                 <button onClick={()=>setActivate(false)} className="float-right mr-2 hover:text-red-600 duration-200">⛌</button>

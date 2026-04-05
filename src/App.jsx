@@ -24,33 +24,34 @@ function App() {
 
   return (
     <div>
-    <Menubar className="flex flex-row items-center justify-start z-50 rounded-none backdrop-blur text-white border-none">
+    <Menubar className="absolute w-full flex flex-row items-center justify-start z- rounded-none backdrop-blur text-white border-none">
     <MenubarMenu>
       <MenubarTrigger>🥔</MenubarTrigger>
       <MenubarContent className="mx-1 backdrop-blur-xl bg-black/50 text-white">
         <MenubarGroup>
           <MenubarItem onClick={()=>(dockShow==true)?setDockShow(false):setDockShow(true)}>{(dockShow==true)?"Hide Dock":"Show Dock"}</MenubarItem>
+          <hr className="w-[100%] my-1 flex justify-center" />
+          <MenubarItem onClick={() => window.open("https://github.com/PiyushVarman/sandbox", "_blank","noreferrer")}>
+            Source Code
+          </MenubarItem>
         </MenubarGroup>
       </MenubarContent>
     </MenubarMenu>
     <MenubarMenu>
       <MenubarTrigger>Applications</MenubarTrigger>
-      <MenubarContent className="mx-1 backdrop-blur-xl bg-black/50 text-white ">
+      <MenubarContent className="backdrop-blur-xl bg-black/50 text-white ">
         <MenubarGroup >
-          <MenubarItem  onClick={() => setCalcOpen(true)}>
-            Calculator
+          <MenubarItem  onClick={() => {calcOpen ? setCalcOpen(false) : setCalcOpen(true)}}>
+            {calcOpen ? "Close" : "Open"} Calculator
           </MenubarItem>
-          <MenubarItem onClick={() => setNotepadOpen(true)}>
-            NotePad
-          </MenubarItem>
-          <MenubarItem onClick={() => window.open("https://github.com/PiyushVarman/sandbox", "_blank","noreferrer")}>
-            GitHub Repo
+          <MenubarItem onClick={() => {notepadOpen ? setNotepadOpen(false) : setNotepadOpen(true)}}>
+            {notepadOpen ? "Close":"Open"} NotePad
           </MenubarItem>
         </MenubarGroup>
       </MenubarContent>
     </MenubarMenu>
   </Menubar>
-    <div style={{marginTop:"10px", fontSize:"10px", width:"350px", float:"right"}} className="hover:scale-110 hover:mr-4 hover:drop-shadow-xs hover:drop-shadow-amber-300 duration-100 cursor-none"> 
+    <div style={{marginTop:"10px", fontSize:"10px", width:"350px", float:"right"}} className="pt-8 hover:scale-110 hover:mr-4 hover:drop-shadow-xs hover:drop-shadow-amber-300 duration-100 cursor-none"> 
       <span className="select-none bg-linear-to-r from-black to-[#ffd700]/90 text-transparent bg-clip-text ">
       ░█████╗░░█████╗░██╗░░░░░░█████╗░░█████╗░░██████╗<br/>
       ██╔══██╗██╔══██╗██║░░░░░██╔══██╗██╔══██╗██╔════╝<br/>
