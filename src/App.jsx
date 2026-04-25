@@ -64,7 +64,7 @@ function App() {
     <AnimatePresence>
       {calcOpen && <Calculator setActivate={ setCalcOpen }/>}
     </AnimatePresence>
-    <AnimatePresence>
+    <AnimatePresence >
       {notepadOpen && <Notepad setActivate={ setNotepadOpen }/>}
     </AnimatePresence>
       
