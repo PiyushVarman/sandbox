@@ -3,6 +3,7 @@ import './App.css'
 import Calculator from './calculator.jsx';
 import Notepad from './notepad.jsx';
 import { AnimatePresence,motion } from 'motion/react';
+import { RetroGrid } from './components/ui/retro-grid';
 
 import {
   Menubar,
@@ -21,16 +22,19 @@ function App() {
   const [dockShow, setDockShow] =useState(true);
   const [calcOpen, setCalcOpen] = useState(false);
   const [notepadOpen, setNotepadOpen] = useState(false);
+  const [grid, setGrid] = useState(true);
 
   return (
     <div>
+    {grid && <RetroGrid darkLineColor="#ffd700" opacity={0.5} angle={80}/>}
     <Menubar className="absolute w-full flex flex-row items-center justify-start z- rounded-none backdrop-blur text-white border-none">
     <MenubarMenu>
       <MenubarTrigger>🥔</MenubarTrigger>
       <MenubarContent className="mx-1 backdrop-blur-xl bg-black/50 text-white">
         <MenubarGroup>
-          <MenubarItem onClick={()=>(dockShow==true)?setDockShow(false):setDockShow(true)}>{(dockShow==true)?"Hide Dock":"Show Dock"}</MenubarItem>
-          <hr className="w-[100%] my-1 flex justify-center" />
+          <MenubarItem onClick={()=>(dockShow==true)?setDockShow(false):setDockShow(true)}>{(dockShow==true)?"Hide ":"Show "}Dock</MenubarItem>
+          <MenubarItem onClick={()=>(grid==true)?setGrid(false):setGrid(true)}>{(grid==true)?"Pause ":"Resume "}Animation</MenubarItem>
+          <hr className="w-full my-1 flex justify-center" />
           <MenubarItem onClick={() => window.open("https://github.com/PiyushVarman/sandbox", "_blank","noreferrer")}>
             Source Code
           </MenubarItem>
