@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import Calculator from './calculator.jsx';
 import Notepad from './notepad.jsx';
@@ -17,12 +17,20 @@ import {
 } from "@/components/ui/menubar"
 
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import { Menu } from 'lucide-react';
 
 function App() {
   const [dockShow, setDockShow] =useState(true);
   const [calcOpen, setCalcOpen] = useState(false);
   const [notepadOpen, setNotepadOpen] = useState(false);
   const [grid, setGrid] = useState(true);
+  const [now,setNow]=useState(new Date().toLocaleTimeString());
+
+  useEffect(()=>{
+    const timer = setInterval(()=>{
+      setNow(new Date().toLocaleTimeString());
+    }, 1000);
+  })
 
   return (
     <div>
@@ -53,6 +61,9 @@ function App() {
           </MenubarItem>
         </MenubarGroup>
       </MenubarContent>
+    </MenubarMenu>
+    <MenubarMenu>
+      <MenubarTrigger className="float-right">{now}</MenubarTrigger>
     </MenubarMenu>
   </Menubar>
     <div style={{marginTop:"10px", fontSize:"10px", width:"350px", float:"right"}} className="pt-8 hover:scale-110 hover:mr-4 hover:drop-shadow-xs hover:drop-shadow-amber-300 duration-100 cursor-none"> 
