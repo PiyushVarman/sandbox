@@ -4,6 +4,8 @@ import Calculator from './calculator.jsx';
 import Notepad from './notepad.jsx';
 import { AnimatePresence,motion } from 'motion/react';
 import { RetroGrid } from './components/ui/retro-grid';
+import { Calendar } from '@/components/ui/calendar';
+import { Slider } from  '@/components/ui/slider';
 
 import {
   Menubar,
@@ -24,17 +26,20 @@ function App() {
   const [calcOpen, setCalcOpen] = useState(false);
   const [notepadOpen, setNotepadOpen] = useState(false);
   const [grid, setGrid] = useState(true);
-  const [now,setNow]=useState(new Date().toLocaleTimeString());
+  const [angle, setAngle] = useState(0);
+  const [now,setNow]=useState(new Date());
+  const [date, setDate] = useState(new Date());
+  const options={weekday:'long', day:'numeric',month:'long',year:'numeric'}
 
   useEffect(()=>{
     const timer = setInterval(()=>{
-      setNow(new Date().toLocaleTimeString());
+      setNow(new Date());
     }, 1000);
-  })
+  }, []);
 
   return (
     <div>
-    {grid && <RetroGrid darkLineColor="#ffd700" opacity={0.5} angle={80}/>}
+    {grid && <RetroGrid className='absolute top-0 bottom-0 z-[-1]' darkLineColor="#ffd700" lightLineColor="#ffd700" opacity={0.5} angle={angle}/>}
     <Menubar className="absolute w-full flex flex-row items-center justify-start z- rounded-none backdrop-blur text-white border-none">
     <MenubarMenu>
       <MenubarTrigger>🥔</MenubarTrigger>
@@ -42,6 +47,7 @@ function App() {
         <MenubarGroup>
           <MenubarItem onClick={()=>(dockShow==true)?setDockShow(false):setDockShow(true)}>{(dockShow==true)?"Hide ":"Show "}Dock</MenubarItem>
           <MenubarItem onClick={()=>(grid==true)?setGrid(false):setGrid(true)}>{(grid==true)?"Pause ":"Resume "}Animation</MenubarItem>
+          <MenubarItem>Animation Angle: {angle}<br/></MenubarItem><Slider className="m-1 mb-2 rounded bg-black w-30" defaultValue={[angle]} max={90} step={1} onValueChange={(value) => setAngle(value)}/>
           <hr className="w-full my-1 flex justify-center" />
           <MenubarItem onClick={() => window.open("https://github.com/PiyushVarman/sandbox", "_blank","noreferrer")}>
             Source Code
@@ -63,7 +69,11 @@ function App() {
       </MenubarContent>
     </MenubarMenu>
     <MenubarMenu>
-      <MenubarTrigger className="float-right">{now}</MenubarTrigger>
+      <MenubarTrigger className="float-right">{now.toLocaleTimeString()}</MenubarTrigger>
+      <MenubarContent className="p-2 backdrop-blur-xl w-full text-center flex flex-col justify-center bg-black/50 text-white ">
+        {now.toLocaleDateString('en-IN',options)}
+        <Calendar className="rounded-xl" mode="single" selected={date} onSelect={setDate} />
+      </MenubarContent>
     </MenubarMenu>
   </Menubar>
     <div style={{marginTop:"10px", fontSize:"10px", width:"350px", float:"right"}} className="pt-8 hover:scale-110 hover:mr-4 hover:drop-shadow-xs hover:drop-shadow-amber-300 duration-100 cursor-none"> 

@@ -10,7 +10,7 @@ const GRID_LINE_WIDTH_PX = 0.92
 const GRID_START_OFFSET_RATIO = -0.5
 const GRID_WIDTH_RATIO = 6
 const GRID_X_OFFSET_RATIO = -2
-const MAX_ANGLE = 89
+const MAX_ANGLE = 90
 const MAX_DEVICE_PIXEL_RATIO = 2
 const MIN_ANGLE = 1
 const PERSPECTIVE_PX = 200
@@ -92,7 +92,7 @@ float renderGridLine(
 }
 
 void main() {
-  float angle = radians(clamp(u_angle, 1.0, 89.0));
+  float angle = radians(clamp(u_angle, 1.0, 90.0));
   float sinAngle = sin(angle);
   float cosAngle = cos(angle);
   vec2 screen = vec2(
