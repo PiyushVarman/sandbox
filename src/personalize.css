@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+.window{
+    @apply [&,>*]:rounded-xl;
+    @apply w-[50vw];
+    @apply h-[50vh];
+    @apply backdrop-blur-md;
+    @apply bg-black/25;
+    box-shadow: 0px 0px 5px;
+}

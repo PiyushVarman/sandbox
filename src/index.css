@@ -2,7 +2,8 @@
 @import "tailwindcss";
 
 :root {
-  @apply bg-linear-45 from-[#ffd700] to-[white];
+  --background: rgba(255,215,0,1);
+  background: linear-gradient(45deg, var(--background), white);
   line-height: 1.4;
   overflow: hidden;
 }

@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+
 import "./notepad.css";
 
 function Notepad({ setActivate })

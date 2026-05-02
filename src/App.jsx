@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import Calculator from './calculator.jsx';
 import Notepad from './notepad.jsx';
+import Personalize from './personalize.jsx';
 import { AnimatePresence,motion } from 'motion/react';
 import { RetroGrid } from './components/ui/retro-grid';
 import { Calendar } from '@/components/ui/calendar';
@@ -25,11 +26,20 @@ function App() {
   const [dockShow, setDockShow] =useState(true);
   const [calcOpen, setCalcOpen] = useState(false);
   const [notepadOpen, setNotepadOpen] = useState(false);
+  const [personalizeOpen, setPersonalizeOpen] = useState(false);
+  const [bgColor, setbackground] = useState("rgba(255,215,0,1)");
   const [grid, setGrid] = useState(true);
   const [angle, setAngle] = useState(0);
   const [now,setNow]=useState(new Date());
   const [date, setDate] = useState(new Date());
   const options={weekday:'long', day:'numeric',month:'long',year:'numeric'}
+  
+  useEffect(() => {
+    if (typeof bgColor === 'string' && !bgColor.includes("NaN"))
+    {
+      document.documentElement.style.setProperty('--background', bgColor);
+    }
+  }, [bgColor]);
 
   useEffect(()=>{
     const timer = setInterval(()=>{
@@ -45,7 +55,7 @@ function App() {
     <MenubarMenu>
       <Tooltip>
         <TooltipTrigger asChild>
-          <MenubarTrigger>🥔</MenubarTrigger>
+          <MenubarTrigger>🟢</MenubarTrigger>
         </TooltipTrigger>
         <TooltipContent className='text-[#ffd700]!' side='bottom'>
           AaloOS
@@ -107,6 +117,9 @@ function App() {
     <AnimatePresence >
       {notepadOpen && <Notepad setActivate={ setNotepadOpen }/>}
     </AnimatePresence>
+    <AnimatePresence >
+      {personalizeOpen && <Personalize setActivate={ setPersonalizeOpen } setAngle={setAngle} angle={angle} setColor={setbackground} color={bgColor}/>}
+    </AnimatePresence>
       
     <AnimatePresence>
     {dockShow && <motion.div initial={{opacity:0.5, scale:0.9}} animate={{opacity: 1, scale:1}} exit={{scale:0.25, opacity:0}} transition={{duration: 0.1}} className='flex flex-row items-center justify-center gap-x-5  absolute bottom-4 left-[35%] w-[30vw] h-[75px] rounded-2xl shadow-xs *:hover:shadow-md *:hover:shadow-black shadow-black bg-black/50 hover:bg-black/60 duration-200 backdrop-blur-sm select-none *:flex *:items-center *:justify-center *:hover:scale-110 *:rounded-xl *:w-13 *:h-13 *:active:shadow-none *:active:scale-100'>
@@ -121,10 +134,18 @@ function App() {
         </Tooltip>
         <Tooltip>
           <TooltipTrigger asChild>
-            <motion.div initial={{opacity:0.5, scale:0.8}} animate={{opacity: 1, scale:1}} className='text-3xl align-middle bg-blue-300 duration-200 p-0 cursor-pointer' onClick={() => (notepadOpen == false ? setNotepadOpen(true) : setNotepadOpen(false))}>🗒️</motion.div>
+            <motion.div initial={{opacity:0.5, scale:0.8}} animate={{opacity: 1, scale:1}} className='text-3xl align-middle text-shadow-xs text-shadow-black bg-blue-300 duration-200 p-0 cursor-pointer' onClick={() => (notepadOpen == false ? setNotepadOpen(true) : setNotepadOpen(false))}>🗒️</motion.div>
           </TooltipTrigger>
           <TooltipContent>
             <p>Notepad</p>
+          </TooltipContent>
+        </Tooltip>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <motion.div initial={{opacity:0.5, scale:0.8}} animate={{opacity: 1, scale:1}} className='text-4xl flex flex-col align-middle bg-[#ffd700]/50 duration-200 pb-1 text-shadow-xs text-shadow-black cursor-pointer' onClick={() => (personalizeOpen == false ? setPersonalizeOpen(true) : setPersonalizeOpen(false))}>🎨</motion.div>
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>Personalize</p>
           </TooltipContent>
         </Tooltip>
     </motion.div> }
