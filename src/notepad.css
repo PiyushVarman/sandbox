@@ -12,10 +12,10 @@
 .text{
     @apply w-[98%];
     @apply h-[85%];
-    @apply outline;
     @apply mx-1;
     @apply mt-5;
     @apply bg-black/70;
+    @apply shadow-lg shadow-black/50;
     @apply px-2;
     @apply py-3;
     font-family: "Consolas";

@@ -1,8 +1,11 @@
 @import "tailwindcss";
 
-.window{
+.windowpers{
+    @apply my-[25vh] mx-[15vw]; 
+    @apply xl:my-[25vh] xl:mx-[25vw]; 
     @apply [&,>*]:rounded-xl;
-    @apply w-[50vw];
+    @apply w-[70vw];
+    @apply xl:w-[50vw];
     @apply h-[50vh];
     @apply backdrop-blur-md;
     @apply bg-black/25;

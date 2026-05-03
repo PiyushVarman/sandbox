@@ -7,7 +7,9 @@ import { AnimatePresence,motion } from 'motion/react';
 import { RetroGrid } from './components/ui/retro-grid';
 import { Calendar } from '@/components/ui/calendar';
 import { Slider } from  '@/components/ui/slider';
-
+import { Button } from  '@/components/ui/button';
+import {Alert, AlertAction, AlertDescription, AlertTitle} from '@/components/ui/alert';
+import { InfoIcon, Cog } from "lucide-react"
 import {
   Menubar,
   MenubarContent,
@@ -21,6 +23,7 @@ import {
 
 import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from "@/components/ui/tooltip";
 import { Menu } from 'lucide-react';
+import { AnimatedShinyText } from './components/ui/animated-shiny-text.jsx';
 
 function App() {
   const [dockShow, setDockShow] =useState(true);
@@ -50,22 +53,22 @@ function App() {
   return (
     <TooltipProvider>
     <div>
-    {grid && <RetroGrid className='absolute top-0 bottom-0 z-[-1]' darkLineColor="#ffd700" lightLineColor="#ffd700" opacity={0.5} angle={angle}/>}
+    {grid && <RetroGrid className='absolute top-0 bottom-0 z-[-1]' darkLineColor={bgColor} lightLineColor={bgColor} opacity={0.5} angle={angle}/>}
     <Menubar className="absolute w-full flex flex-row items-center justify-start z- rounded-none backdrop-blur text-white border-none">
     <MenubarMenu>
       <Tooltip>
         <TooltipTrigger asChild>
-          <MenubarTrigger>🟢</MenubarTrigger>
+          <MenubarTrigger><Cog className='h-5 w-5 text-gray-100 hover:rotate-720 duration-200'/></MenubarTrigger>
         </TooltipTrigger>
-        <TooltipContent className='text-[#ffd700]!' side='bottom'>
-          AaloOS
+        <TooltipContent side='bottom'>
+          System Settings
         </TooltipContent>
       </Tooltip>
-      <MenubarContent className="mx-1 backdrop-blur-xl bg-black/50 text-white">
-        <MenubarGroup>
+      <MenubarContent className="mx-1 backdrop-blur-xl bg-black/50 text-white outline-0">
+        <MenubarGroup className=''>
           <MenubarItem onClick={()=>(dockShow==true)?setDockShow(false):setDockShow(true)}>{(dockShow==true)?"Hide ":"Show "}Dock</MenubarItem>
           <MenubarItem onClick={()=>(grid==true)?setGrid(false):setGrid(true)}>{(grid==true)?"Pause ":"Resume "}Animation</MenubarItem>
-          <MenubarItem>Animation Angle: {angle}<br/></MenubarItem><Slider className="m-1 mb-2 rounded bg-black w-30" defaultValue={[angle]} max={90} step={1} onValueChange={(value) => setAngle(value)}/>
+          <MenubarItem onClick={()=>(personalizeOpen==true)?setPersonalizeOpen(false):setPersonalizeOpen(true)}>Personalize</MenubarItem>
           <hr className="w-full my-1 flex justify-center" />
           <MenubarItem onClick={() => window.open("https://github.com/PiyushVarman/sandbox", "_blank","noreferrer")}>
             Source Code
@@ -89,9 +92,9 @@ function App() {
     <MenubarMenu>
       <Tooltip>
         <TooltipTrigger asChild>
-          <MenubarTrigger className="float-right">{now.toLocaleTimeString()}</MenubarTrigger>
+          <MenubarTrigger className="xl:ml-[85.5vw] ">{now.toLocaleTimeString()}</MenubarTrigger>
         </TooltipTrigger>
-        <TooltipContent className='tracking-tight!'>
+        <TooltipContent className='tracking-tight' side="left">
           Date and Time
         </TooltipContent>
       </Tooltip>
@@ -101,8 +104,23 @@ function App() {
       </MenubarContent>
     </MenubarMenu>
   </Menubar>
+  <AnimatePresence>
+  <motion.div key="feature-alert" className="fixed z-50"  initial={{ x: 100, opacity: 0, scale: 0, top: "100vh", right:"18vw" }} 
+    animate={{ x: 0, opacity: 1, scale: 1, top:"90vh", right:"18vw" }} 
+    transition={{ type: "spring", stiffness: 200, damping: 25 }}  >
+    <Alert className="fixed hover:bg-black/70 duration-200 bg-black/50 text-white border-0 z-50 w-max backdrop-blur-2xl hover:scale-102 select-none">
+      <InfoIcon/>
+      <AlertTitle>New Feature!</AlertTitle>
+      <AlertDescription className="text-md">
+      <AnimatedShinyText>
+          Check out the new Personalize App
+      </AnimatedShinyText>
+      </AlertDescription>
+    </Alert>
+  </motion.div>
+  </AnimatePresence>
     <div style={{marginTop:"10px", fontSize:"10px", width:"350px", float:"right"}} className="pt-8 hover:scale-110 hover:mr-4 hover:drop-shadow-xs hover:drop-shadow-amber-300 duration-100 cursor-none"> 
-      <span className="select-none bg-linear-to-r from-black to-[#ffd700]/90 text-transparent bg-clip-text ">
+      <span className="select-none bg-linear-to-r from-black to-[var(--background)]/90 text-transparent bg-clip-text ">
       ░█████╗░░█████╗░██╗░░░░░░█████╗░░█████╗░░██████╗<br/>
       ██╔══██╗██╔══██╗██║░░░░░██╔══██╗██╔══██╗██╔════╝<br/>
       ███████║███████║██║░░░░░██║░░██║██║░░██║╚█████╗░<br/>

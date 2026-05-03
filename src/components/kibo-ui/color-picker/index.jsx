@@ -183,7 +183,7 @@ export const ColorPickerHue = ({
         <Slider.Range className="absolute h-full" />
       </Slider.Track>
       <Slider.Thumb
-        className="block h-4 w-4 rounded-full border border-primary/50 bg-background shadow transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50" />
+        className="block backdrop-blur-xl h-4 w-4 rounded-full border border-primary/50 bg-background shadow transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:scale-110" />
     </Slider.Root>
   );
 };
@@ -209,7 +209,7 @@ export const ColorPickerAlpha = ({
         <Slider.Range className="absolute h-full rounded-full bg-transparent" />
       </Slider.Track>
       <Slider.Thumb
-        className="block h-4 w-4 rounded-full border border-primary/50 bg-background shadow transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50" />
+        className="block backdrop-blur-xl h-4 w-4 rounded-full border border-primary/50 bg-background shadow transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:scale-110" />
     </Slider.Root>
   );
 };
@@ -314,10 +314,10 @@ export const ColorPickerFormat = ({
         )}
         {...props}>
         <Input
-          className="h-8 rounded-r-none bg-secondary px-2 text-xs shadow-none"
-          readOnly
+          className="h-8 rounded-r-none bg-secondary px-2 text-xl! shadow-xs shadow-black/20 border-1"
           type="text"
-          value={hex} />
+          value={hex}
+      />
         <PercentageInput value={alpha} />
       </div>
     );
@@ -336,7 +336,7 @@ export const ColorPickerFormat = ({
         {rgb.map((value, index) => (
           <Input
             className={cn(
-              "h-8 rounded-r-none bg-secondary px-2 text-xs shadow-none",
+              "h-8 rounded-r-none outline-none bg-secondary px-2 text-xs shadow-none",
               index && "rounded-l-none",
               className
             )}
