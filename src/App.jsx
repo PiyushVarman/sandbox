@@ -140,7 +140,7 @@ function App() {
     </AnimatePresence>
       
     <AnimatePresence>
-    {dockShow && <motion.div initial={{opacity:0.5, scale:0.9}} animate={{opacity: 1, scale:1}} exit={{scale:0.25, opacity:0}} transition={{duration: 0.1}} className='flex flex-row items-center justify-center gap-x-5  absolute bottom-4 left-[35%] md:w-[30vw] xl:w-[30vw] h-18.75 rounded-2xl shadow-xs *:hover:shadow-md *:hover:shadow-black shadow-black bg-black/50 hover:bg-black/60 duration-200 backdrop-blur-sm select-none *:flex *:items-center *:justify-center *:hover:scale-110 *:rounded-xl *:w-13 *:h-13 *:active:shadow-none *:active:scale-100'>
+    {dockShow && <motion.div initial={{opacity:0.5, scale:0.9}} animate={{opacity: 1, scale:1}} exit={{scale:0.25, opacity:0}} transition={{duration: 0.1}} className='flex flex-row items-center justify-center gap-x-5  absolute bottom-4  left-[27.5%] xl:left-[35%] md:w-[30vw] xl:w-[30vw] h-18.75 rounded-2xl shadow-xs *:hover:shadow-md *:hover:shadow-black shadow-black bg-black/50 hover:bg-black/60 duration-200 backdrop-blur-sm select-none *:flex *:items-center *:justify-center *:hover:scale-110 *:rounded-xl *:w-13 *:h-13 *:active:shadow-none *:active:scale-100'>
       
         <Tooltip>
           <TooltipTrigger asChild>
