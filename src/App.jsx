@@ -6,8 +6,6 @@ import Personalize from './personalize.jsx';
 import { AnimatePresence,motion } from 'motion/react';
 import { RetroGrid } from './components/ui/retro-grid';
 import { Calendar } from '@/components/ui/calendar';
-import { Slider } from  '@/components/ui/slider';
-import { Button } from  '@/components/ui/button';
 import {Alert, AlertAction, AlertDescription, AlertTitle} from '@/components/ui/alert';
 import { InfoIcon, Cog } from "lucide-react"
 import {
